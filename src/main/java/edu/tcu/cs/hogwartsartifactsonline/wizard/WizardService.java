@@ -38,11 +38,17 @@ public class WizardService {
                 .orElseThrow(() -> new ObjectNotFoundException("wizard", wizardId));
     }
 
-    public void delete(Integer wizardId) {
-        Wizard wizardToBeDeleted = this.wizardRepository.findById(wizardId)
+    public void assignArtifact(Integer wizardId, String artifactId) {
+
+        Artifact artifact = this.artifactRepository.findById(artifactId)
+                .orElseThrow(() -> new ObjectNotFoundException("artifact", artifactId));
+
+        Wizard wizard = this.repository.findById(wizardId)
                 .orElseThrow(() -> new ObjectNotFoundException("wizard", wizardId));
 
-        wizardToBeDeleted.removeAllArtifacts();
-        this.wizardRepository.deleteById(wizardId);
+        if (artifact.getOwner() != null) {
+            artifact.getOwner().removeArtifact(artifact);
+        }
+
+        wizard.addArtifact(artifact);
     }
-}

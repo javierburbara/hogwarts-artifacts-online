@@ -68,18 +68,16 @@ public class WizardController {
         );
     }
 
-    @PutMapping("/{wizardId}")
-    public Result updateWizard(@PathVariable Integer wizardId,
-                               @Valid @RequestBody WizardDto wizardDto) {
-        Wizard update = this.wizardDtoToWizardConverter.convert(wizardDto);
-        Wizard updatedWizard = this.wizardService.update(wizardId, update);
-        WizardDto updatedWizardDto = this.wizardToWizardDtoConverter.convert(updatedWizard);
+    @PutMapping("/{wizardId}/artifacts/{artifactId}")
+    public Result assignArtifact(@PathVariable Integer wizardId,
+                                 @PathVariable String artifactId) {
+
+        this.wizardService.assignArtifact(wizardId, artifactId);
 
         return new Result(
                 true,
                 StatusCode.SUCCESS,
-                "Update Success",
-                updatedWizardDto
+                "Artifact Assignment Success"
         );
     }
 
