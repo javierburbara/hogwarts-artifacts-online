@@ -27,39 +27,16 @@ public class UserController {
     }
 
     @GetMapping
-    public Result findAll() {
-        List<UserDto> dtos = service.findAll().stream()
-                .map(toDto::convert)
-                .toList();
-
-        return new Result(true, StatusCode.SUCCESS, "Find All Success", dtos);
-    }
+    public Result findAll() { ... }
 
     @GetMapping("/{id}")
-    public Result findById(@PathVariable Integer id) {
-        return new Result(true, StatusCode.SUCCESS, "Find One Success",
-                toDto.convert(service.findById(id)));
-    }
+    public Result findById(@PathVariable Integer id) { ... }
 
     @PostMapping
-    public Result add(@Valid @RequestBody HogwartsUser user) {
-        return new Result(true, StatusCode.SUCCESS, "Add Success",
-                toDto.convert(service.save(user)));
-    }
+    public Result add(@RequestBody HogwartsUser user) { ... }
 
     @PutMapping("/{id}")
-    public Result update(@PathVariable Integer id,
-                         @Valid @RequestBody UserDto dto) {
-
-        HogwartsUser update = toEntity.convert(dto);
-
-        return new Result(true, StatusCode.SUCCESS, "Update Success",
-                toDto.convert(service.update(id, update)));
-    }
+    public Result update(@PathVariable Integer id, @RequestBody UserDto dto) { ... }
 
     @DeleteMapping("/{id}")
-    public Result delete(@PathVariable Integer id) {
-        service.delete(id);
-        return new Result(true, StatusCode.SUCCESS, "Delete Success");
-    }
-}
+    public Result delete(@PathVariable Integer id) { ... }
