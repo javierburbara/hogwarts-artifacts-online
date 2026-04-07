@@ -45,3 +45,5 @@ public class UserService {
         repository.deleteById(user.getId());
     }
 }
+
+private final PasswordEncoder passwordEncoder;
