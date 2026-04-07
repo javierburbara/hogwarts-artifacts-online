@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: ${datasource-url}
+    username: ${datasource-username}
+    password: ${datasource-password}
+
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+
+spring:
+  cloud:
+    azure:
+      keyvault:
+        secret:
+          property-sources[0]:
+            endpoint: https://hogwarts-key-vault.vault.azure.net/
