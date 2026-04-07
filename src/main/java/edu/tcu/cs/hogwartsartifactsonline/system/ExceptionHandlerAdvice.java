@@ -37,3 +37,13 @@ public class ExceptionHandlerAdvice {
         );
     }
 }
+
+@ExceptionHandler(InsufficientAuthenticationException.class)
+@ResponseStatus(HttpStatus.UNAUTHORIZED)
+public Result handleInsufficientAuthenticationException(
+        InsufficientAuthenticationException ex) {
+
+    return new Result(false,
+            StatusCode.UNAUTHORIZED,
+            "Login credentials are missing");
+}
