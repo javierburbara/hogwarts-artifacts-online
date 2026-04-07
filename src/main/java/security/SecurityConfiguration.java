@@ -1,0 +1,1 @@
+http.oauth2ResourceServer(oauth2 -> oauth2.jwt());
